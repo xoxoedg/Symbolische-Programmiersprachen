@@ -1,4 +1,5 @@
 import re
+# Lookahead
 
 def is_valid_email(email):
     """
@@ -13,7 +14,7 @@ def find_mentions(text):
     TODO: Extract all mentions (@username) from text (str).
     Output: List of mentions
     """
-    pass
+    return re.findall(r"@[a-zA-Z]+", text)
 
 def redact_mentions(text, replace_with):
     """
@@ -21,7 +22,7 @@ def redact_mentions(text, replace_with):
     with replace_with (str).
     Output: Modified text (str)
     """
-    pass
+    return re.sub(r"@[a-zA-Z0-9]+", replace_with, text)
 
 def is_strong_password(password):
     """
@@ -29,7 +30,7 @@ def is_strong_password(password):
     A strong password is defined as one that is at least 10 characters long, contains both uppercase and lowercase characters, has at least one numeral, and does not contain any spaces or tabs.
     Output: Bool, True if strong, otherwise False.
     """
-    pass
+    return re.match(r"\.{10,}")
 
 def replace_links(text, replace_with):
     """
