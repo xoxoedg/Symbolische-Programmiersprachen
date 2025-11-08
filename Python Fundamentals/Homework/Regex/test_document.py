@@ -1,8 +1,7 @@
 import inspect
 import os
-
+from Homework.Regex.document import PDFDocument, TextDocument
 from unittest import TestCase
-from document import PDFDocument, TextDocument
 
 
 class DocumentTest(TestCase):
@@ -31,7 +30,7 @@ class DocumentTest(TestCase):
         return cls.__init__.__code__.co_varnames[1:cls.__init__.__code__.co_argcount]
 
     def test_author(self):  # [1 points]
-        from homework.hw03_regex.document import Author
+        from Homework.Regex.document import Author
         author_constructor_args = DocumentTest._get_constructor_args(Author)
         for arg in ["firstname", "lastname", "age"]:
             self.assertIn(arg, author_constructor_args)
@@ -40,6 +39,6 @@ class DocumentTest(TestCase):
         self.assertIn("author", pdf_doc_constructor_args)
 
     def test_author_initials(self):  # [1 points]
-        from homework.hw03_regex.document import Author
+        from Homework.Regex.document import Author
         author = Author("John", "Doe", 30)
         self.assertEqual(author.get_initials(), "J.D.")

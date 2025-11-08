@@ -32,20 +32,29 @@ class TextDocument:
         return cls(text, filename)
 
 
-# TODO: Inherit from TextDocument
 class PDFDocument(TextDocument):
-    # TODO: implement constructor (use load_pdf() and call parent constructor)
-    def __init__(self, docid: int, text: str, path: str):
-        TextDocument.__init__(self, docid, text)
-        self.pdf: str = load_pdf(path)
+    def __init__(self, docid, filepath, author):
+        self.filepath = filepath
+        text = self.load_pdf(filepath)
+        super().__init__(docid, text)
+        self.author = author
+
+
+
+    def load_pdf(self, path):
+        with open(path, "rb") as f:
+            pdf = PyPDF2.PdfReader(f)
+            text = " ".join(page.extract_text() for page in pdf.pages)
+        return text
 
 
 class Author:
-    # TODO: Implement the constructor of Author class
-    def __init__(self, first_name: str, last_name: str):
-        self.first_name: str = first_name
-        self.last_name: str = last_name
+    def __init__(self, firstname, lastname, age):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.age = age
 
-    # TODO: Add a method get_initials() that returns the initials of the author's first and last names in uppercase, e.g., "J.D."
     def get_initials(self):
-        return self.first_name[0].upper() + self.last_name[0].upper()
+        return f"{self.firstname[0].upper()}.{self.lastname[0].upper()}."
+
+
