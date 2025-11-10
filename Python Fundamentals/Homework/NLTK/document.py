@@ -27,7 +27,7 @@ class TextDocument:
         """ This creates a TextDocument instance by reading a file. """
         with open(filename) as f:
             text = f.read().strip()
-        return cls(text, filename)
+        return cls(filename, text)
 
 
 # TODO: Inherit from TextDocument

@@ -12,5 +12,6 @@ for word in word_tokenize(sent):
     condition = len(word)
     cfdist[condition][word] += 1
 
-p
+
 print(cfdist[3].most_common())
+print(cfdist.conditions())
