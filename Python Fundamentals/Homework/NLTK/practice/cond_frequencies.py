@@ -1,4 +1,4 @@
-from nltk.probability import ConditionalFreqDist
+from nltk.probability import ConditionalFreqDist, FreqDist
 from nltk.tokenize import word_tokenize
 
 sent = """
@@ -12,6 +12,13 @@ for word in word_tokenize(sent):
     condition = len(word)
     cfdist[condition][word] += 1
 
-
+print(cfdist.__repr__())
 print(cfdist[3].most_common())
 print(cfdist.conditions())
+
+
+ent = 'This is an example sentence'
+fdist = FreqDist()
+for word in word_tokenize(sent):
+     fdist[word.lower()] += 1
+

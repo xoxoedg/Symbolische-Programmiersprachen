@@ -12,12 +12,13 @@ class LangModeler(object):
     def build_language_models(self):
         cfd = ConditionalFreqDist()
         for language in self.languages:
-            text = self.words[language]
-            bigramList = bigrams(text)
-            for biagram in bigramList:
-                biagram_as_string = "".join(biagram)
-                cfd[language][biagram_as_string] = FreqDist(biagram_as_string)
+            text = " ".join(self.words[language]).lower()
+            text_biagram = list(bigrams(text))
+            for c1, c2 in text_biagram:
+                b_str = c1 + c2
+                cfd[language][b_str] += 1
         return cfd
+
 
     def guess_language(self,language_model_cfd, text):
         """it should return a tuple (most_likely_language, confidence_score) for a
@@ -33,5 +34,8 @@ if __name__ == "__main__":
     print(udhr.fileids())
     languages = ['English','German_Deutsch','French_Francais']
     language_base = dict((language, udhr.words(language + '-Latin1')) for language in languages)
+    print(language_base["English"])
     langModeler = LangModeler(languages, language_base)
     language_model_cfd = langModeler.build_language_models()
+    print(language_model_cfd.conditions())
+    print(language_model_cfd["English"].N())
