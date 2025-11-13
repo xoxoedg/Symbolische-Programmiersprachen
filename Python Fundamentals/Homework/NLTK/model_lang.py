@@ -1,8 +1,7 @@
-import nltk
 from nltk import bigrams
-from nltk.corpus import udhr2
-from nltk.probability import ConditionalFreqDist, FreqDist
 from nltk.corpus import udhr
+from nltk.probability import ConditionalFreqDist
+
 
 class LangModeler(object):
     def __init__(self, languages, words):
