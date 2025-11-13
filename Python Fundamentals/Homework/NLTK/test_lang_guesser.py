@@ -2,8 +2,10 @@ from unittest import TestCase
 # depending on whether your model_lang.py script is found within the same folder with
 # this script and whether you have defined the src folder as the Source Root in PyCharm, you
 # might need to change the following import to remove hw04_nltk
-from src.hw04_nltk.model_lang import LangModeler
+
 import nltk
+
+from Homework.NLTK.model_lang import LangModeler
 
 nltk.download('udhr')
 from nltk.corpus import udhr
